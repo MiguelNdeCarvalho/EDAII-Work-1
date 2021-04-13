@@ -10,10 +10,4 @@ public class Barco
 		this.y = y;
 		this.rating = rating;
 	}
-
-	public int getCordenadaX() {return x;}
-
-	public int getCordenadaY() {return y;}
-
-	public int getRating() {return rating;}
 }

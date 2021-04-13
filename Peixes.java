@@ -10,10 +10,4 @@ public class Peixes
 		this.y = y;
 		this.nPeixes = nPeixes;
 	}
-
-	public int getCordenadaX() {return x;}
-
-	public int getCordenadaY() {return y;}
-
-	public int getRating() {return nPeixes;}
 }
