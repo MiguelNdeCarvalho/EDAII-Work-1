@@ -80,12 +80,19 @@ public class CodFishing
 		Solution temp = new Solution();
 		temp.setSolution(0, 0, 0);
 
+		Solution[][] matriz_sol = new Solution[barcos.length][peixes.length];
+
 		//caso o comprimento dos arrays do barco e do peixe forem iguais entao
 		//calcula o numero max de peixes, a distancia percorrida e o rating dos barcos
 		for (int i = 1; i <= barcos.length; i++)
 		{
 			Solution s = new Solution();
-			s.copy(pesquisa(barcos, peixes, barcos.length - i, peixes.length - 1));
+			if(matriz_sol[barcos.length - i][peixes.length - 1] == null)
+				s.copy(pesquisa(matriz_sol, barcos, peixes, barcos.length - i, peixes.length - 1));
+
+			else
+				s.copy(matriz_sol[barcos.length - i][peixes.length - 1]);
+
 
 			//System.out.println("terminou a pesquisa da main do barco " + (barcos.length-i) + " com o S: " + s.maxPeixes + " " + s.dist + " " + s.rating);
 
@@ -102,21 +109,9 @@ public class CodFishing
 
 		//mostra o resultado
 		System.out.println(temp.maxPeixes + " " + temp.dist + " " + temp.rating);
-
-		
-		/*pesquisa_experimento(solve, barcos, peixes, barcos.length - 1, peixes.length - 1);
-
-		//mostra o resultado
-		System.out.println(solve.maxPeixes + " " + solve.dist + " " + solve.rating);*/
-
-		
-		/*pesquisaDinamica(solve, barcos, peixes, pos_b, pos_p);
-
-		//mostra o resultado
-		System.out.println(solve.maxPeixes + " " + solve.dist + " " + solve.rating);*/
 	}
 
-	public static Solution pesquisa(Item[] barcos, Item[] peixes, int pos_b, int pos_p)
+	public static Solution pesquisa(Solution[][] matriz_sol, Item[] barcos, Item[] peixes, int pos_b, int pos_p)
 	{
 		Solution temp = new Solution();
 		temp.setSolution(0, 0, 0);
@@ -125,192 +120,45 @@ public class CodFishing
 
 		Solution s1 = new Solution();
 		//System.out.println("1ª pesquisa: entrou com o barco " + pos_b + " e vai para o barco " + (pos_b - 1));
-		s1.copy(pesquisa(barcos, peixes, pos_b - 1, pos_p - 1));
-		//System.out.println("terminou a 1ª pesquisa do barco " + pos_b + " com o S1: " + s1.maxPeixes + " " + s1.dist + " " + s1.rating);
-
-		//calcular o numero max de peixes
-		s1.maxPeixes += peixes[pos_p].atributo;
-		//calcula a distancia percorrida
-		s1.dist += Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y);
-		//calcula o atributo dos barcos
-		s1.rating += barcos[pos_b].atributo;
-		//passa para o proximo peixes
-
-		Solution s2 = new Solution();
-		//System.out.println("2ª pesquisa: entrou com o barco " + pos_b + " e vai para o barco " + (pos_b - 2));
-		s2.copy(pesquisa(barcos, peixes, pos_b - 2, pos_p - 1));
-		//System.out.println("terminou a 2ª pesquisa do barco " + pos_b + " com o S1: " + s2.maxPeixes + " " + s2.dist + " " + s2.rating);
-
-		//calcular o numero max de peixes
-		s2.maxPeixes += peixes[pos_p].atributo;
-		//calcula a distancia percorrida
-		s2.dist += Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y);
-		//calcula o atributo dos barcos
-		s2.rating += barcos[pos_b].atributo;
-		//passa para o proximo peixes
-
-
-		//System.out.println("\nantes\nS1: " + s1.maxPeixes + " " + s1.dist + " " + s1.rating);
-		//System.out.println("S2: " + s2.maxPeixes + " " + s2.dist + " " + s2.rating);
-		if(s1.maxPeixes > s2.maxPeixes || s1.dist < s2.dist || s1.rating < s2.rating)
-			temp.copy(s1);
-
-		else
-			temp.copy(s2);
-
-		//System.out.println("depois\ntemp: " + temp.maxPeixes + " " + temp.dist + " " + temp.rating);
-
-		return temp;
-
-
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public static void pesquisa_experimento(Solution solve, Item[] barcos, Item[] peixes, int pos_b, int pos_p)
-	{
-		if (barcos.length <= peixes.length)
+		if (matriz_sol[pos_b][pos_p] == null)
 		{
-			for (int i = pos_b, j = pos_p ; i >= 0 && j >= 0; i--)
-			{
-				//verifica as condicoes:
-				//	- se esta no ultimo peixe
-				//	- se o numero de peixes da posicao atual e maior que a posicao anterior (o array esta organizado por ordem crescente)
-				//	- por ultimo verifica se a distancia da posicao atual e menor que  a anterior
-				//	- como o array de barcos esta ordenado por ordem crescente a condicao do rating ser maior que a anterior nao
-				//e verificada porque apenas decrementa de barco quando um peixe for atribuido
-				if(j == i || j == 0 || i == 0 || (peixes[j].atributo >= peixes[j - 1].atributo || Math.abs(barcos[i].x - peixes[j].x) + Math.abs(barcos[i].y - peixes[j].y) < Math.abs(barcos[i - 1].x - peixes[j].x) + Math.abs(barcos[i - 1].y - peixes[j].y) || barcos[i].atributo < barcos[i - 1].atributo))
-				{
-					//calcular o numero max de peixes
-					solve.maxPeixes += peixes[j].atributo;
-					//calcula a distancia percorrida
-					solve.dist += Math.abs(barcos[i].x - peixes[j].x) + Math.abs(barcos[i].y - peixes[j].y);
-					//calcula o atributo dos barcos
-					solve.rating += barcos[i].atributo;
-					//passa para o proximo peixes
-					j--;
-				}
+				s1.copy(pesquisa(matriz_sol, barcos, peixes, pos_b - 1, pos_p - 1));
+		
+			//System.out.println("terminou a 1ª pesquisa do barco " + pos_b + " com o S1: " + s1.maxPeixes + " " + s1.dist + " " + s1.rating);
 
-				else
-				{
-					//como nao compriu nenhuma das condicoes anteriores, entao o mesmo barco vai verificar o proximo peixe
-					pesquisa_experimento(solve, barcos, peixes, i, j - 1);
-					return;
-				}
-			}
-		}
-
-		else
-		{
-			for (int i = pos_b, j = pos_p ; i >= 0 && j >= 0; i--)
-			{
-				//verifica as condicoes:
-				//	- se esta no ultimo peixe
-				//	- se o numero de peixes da posicao atual e maior que a posicao anterior (o array esta organizado por ordem crescente)
-				//	- por ultimo verifica se a distancia da posicao atual e menor que  a anterior
-				//	- como o array de barcos esta ordenado por ordem crescente a condicao do rating ser maior que a anterior nao
-				//e verificada porque apenas decrementa de barco quando um peixe for atribuido
-				if(j == i || j == 0 || i == 0 || (peixes[j].atributo >= peixes[j - 1].atributo && Math.abs(barcos[i].x - peixes[j].x) + Math.abs(barcos[i].y - peixes[j].y) < Math.abs(barcos[i - 1].x - peixes[j].x) + Math.abs(barcos[i - 1].y - peixes[j].y) && barcos[i].atributo > barcos[i - 1].atributo))
-				{
-					//calcular o numero max de peixes
-					solve.maxPeixes += peixes[j].atributo;
-					//calcula a distancia percorrida
-					solve.dist += Math.abs(barcos[i].x - peixes[j].x) + Math.abs(barcos[i].y - peixes[j].y);
-					//calcula o rating dos barcos
-					solve.rating += barcos[i].atributo;
-					//passa para o proximo peixes
-					j--;
-				}
-
-				else
-				{
-					//como nao compriu nenhuma das condicoes anteriores, entao o mesmo barco vai verificar o proximo peixe
-					pesquisa_experimento(solve, barcos, peixes, i - 1, j);
-					return;
-				}
-			}
-		}
-	}
-
-	public static void pesquisaDinamica(Solution solve, Item[] barcos, Item[] peixes, int pos_b, int pos_p)
-	{
-		if (pos_p > pos_b && pos_p > 0 && pos_b > 0)
-		{
-			/*System.out.println("primeiro if barcos: " + barcos[pos_b].atributo);
-			System.out.println(peixes[pos_p].atributo >= peixes[pos_p - 1].atributo);
-			System.out.println(Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y) <= Math.abs(barcos[pos_b - 1].x - peixes[pos_p].x) + Math.abs(barcos[pos_b - 1].y - peixes[pos_p].y));
-			//System.out.println(Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y));
-			//System.out.println(Math.abs(barcos[pos_b-1].x - peixes[pos_p].x) + Math.abs(barcos[pos_b-1].y - peixes[pos_p].y));
-			System.out.println(barcos[pos_b].atributo >= barcos[pos_b - 1].atributo);*/
-			if (peixes[pos_p].atributo >= peixes[pos_p - 1].atributo || Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y) <= Math.abs(barcos[pos_b - 1].x - peixes[pos_p].x) + Math.abs(barcos[pos_b - 1].y - peixes[pos_p].y) || barcos[pos_b].atributo >= barcos[pos_b - 1].atributo)
-			{
-				//System.out.println("Entrou");
-				//calcular o numero max de peixes
-				solve.maxPeixes += peixes[pos_p].atributo;
-				//calcula a distancia percorrida
-				solve.dist += Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y);
-				//calcula o rating dos barcos
-				solve.rating += barcos[pos_b].atributo;
-				//passa para o proximo peixes
-				pesquisaDinamica(solve, barcos, peixes, pos_b - 1, pos_p - 1);
-			}
-
-			else pesquisaDinamica(solve, barcos, peixes, pos_b, pos_p - 1);
-		}
-
-		else if (pos_b > pos_p && pos_p > 0 && pos_b > 0)
-		{
-			/*System.out.println("segunda if barcos: " + barcos[pos_b].rating);
-			System.out.println(peixes[pos_p].nPeixes >= peixes[pos_p - 1].nPeixes);
-			System.out.println(Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y) <= Math.abs(barcos[pos_b - 1].x - peixes[pos_p].x) + Math.abs(barcos[pos_b - 1].y - peixes[pos_p].y));
-			System.out.println(Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y));
-			System.out.println(Math.abs(barcos[pos_b-1].x - peixes[pos_p].x) + Math.abs(barcos[pos_b-1].y - peixes[pos_p].y));
-			System.out.println(barcos[pos_b].rating >= barcos[pos_b - 1].rating);*/
-			if (peixes[pos_p].atributo >= peixes[pos_p - 1].atributo && Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y) <= Math.abs(barcos[pos_b - 1].x - peixes[pos_p].x) + Math.abs(barcos[pos_b - 1].y - peixes[pos_p].y) && barcos[pos_b].atributo >= barcos[pos_b - 1].atributo)
-			{
-				//System.out.println("Entrou");
-				//calcular o numero max de peixes
-				solve.maxPeixes += peixes[pos_p].atributo;
-				//calcula a distancia percorrida
-				solve.dist += Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y);
-				//calcula o rating dos barcos
-				solve.rating += barcos[pos_b].atributo;
-				//passa para o proximo peixes
-				pesquisaDinamica(solve, barcos, peixes, pos_b - 1, pos_p - 1);
-			}
-
-			else pesquisaDinamica(solve, barcos, peixes, pos_b -1, pos_p);
-		}
-
-		else if (pos_b >= 0 && pos_p >= 0)
-		{
-			//System.out.println("ultimo if barcos: " + barcos[pos_b].rating);
 			//calcular o numero max de peixes
-			solve.maxPeixes += peixes[pos_p].atributo;
+			s1.maxPeixes += peixes[pos_p].atributo;
 			//calcula a distancia percorrida
-			solve.dist += Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y);
-			//calcula o rating dos barcos
-			solve.rating += barcos[pos_b].atributo;
+			s1.dist += Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y);
+			//calcula o atributo dos barcos
+			s1.rating += barcos[pos_b].atributo;
 			//passa para o proximo peixes
-			pesquisaDinamica(solve, barcos, peixes, pos_b - 1, pos_p - 1);
+
+			Solution s2 = new Solution();
+			//System.out.println("2ª pesquisa: entrou com o barco " + pos_b + " e vai para o barco " + (pos_b - 2));
+			s2.copy(pesquisa(matriz_sol, barcos, peixes, pos_b - 2, pos_p - 1));
+			//System.out.println("terminou a 2ª pesquisa do barco " + pos_b + " com o S1: " + s2.maxPeixes + " " + s2.dist + " " + s2.rating);
+
+			//calcular o numero max de peixes
+			s2.maxPeixes += peixes[pos_p].atributo;
+			//calcula a distancia percorrida
+			s2.dist += Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y);
+			//calcula o atributo dos barcos
+			s2.rating += barcos[pos_b].atributo;
+			//passa para o proximo peixes
+
+
+			//System.out.println("\nantes\nS1: " + s1.maxPeixes + " " + s1.dist + " " + s1.rating);
+			//System.out.println("S2: " + s2.maxPeixes + " " + s2.dist + " " + s2.rating);
+			if(s1.maxPeixes > s2.maxPeixes || s1.dist < s2.dist || s1.rating < s2.rating)
+				return s1;
+
+			else
+				return s2;
+
+			//System.out.println("depois\ntemp: " + temp.maxPeixes + " " + temp.dist + " " + temp.rating);
 		}
+
+		return matriz_sol[pos_b][pos_p];
 	}
 }
