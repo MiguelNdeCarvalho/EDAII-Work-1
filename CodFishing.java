@@ -98,7 +98,6 @@ public class CodFishing
 
 			//System.out.println("antes do if temp: " + temp.maxPeixes + " " + temp.dist + " " + temp.rating);
 
-			//if (temp.maxPeixes > s.maxPeixes || (temp.maxPeixes <= s.maxPeixes && temp.dist < s.dist) || (temp.maxPeixes <= s.maxPeixes && temp.dist >= s.dist && temp.rating < s.rating) || i == 1)
 			if (temp.maxPeixes <= s.maxPeixes && temp.dist >= s.dist && temp.rating >= s.rating || i == 1)
 			{
 				temp.copy(s);
@@ -122,7 +121,7 @@ public class CodFishing
 		//System.out.println("1ª pesquisa: entrou com o barco " + pos_b + " e vai para o barco " + (pos_b - 1));
 		if (matriz_sol[pos_b][pos_p] == null)
 		{
-				s1.copy(pesquisa(matriz_sol, barcos, peixes, pos_b - 1, pos_p - 1));
+			s1.copy(pesquisa(matriz_sol, barcos, peixes, pos_b - 1, pos_p - 1));
 		
 			//System.out.println("terminou a 1ª pesquisa do barco " + pos_b + " com o S1: " + s1.maxPeixes + " " + s1.dist + " " + s1.rating);
 
@@ -151,13 +150,15 @@ public class CodFishing
 			//System.out.println("\nantes\nS1: " + s1.maxPeixes + " " + s1.dist + " " + s1.rating);
 			//System.out.println("S2: " + s2.maxPeixes + " " + s2.dist + " " + s2.rating);
 			if(s1.maxPeixes > s2.maxPeixes || s1.dist < s2.dist || s1.rating < s2.rating)
-				return s1;
+				matriz_sol[pos_b][pos_p] = s1;
 
 			else
-				return s2;
+				matriz_sol[pos_b][pos_p] = s2;
 
 			//System.out.println("depois\ntemp: " + temp.maxPeixes + " " + temp.dist + " " + temp.rating);
 		}
+
+		//System.out.println("arr_sol[" + pos_b + "][" + pos_p + "]: " + matriz_sol[pos_b][pos_p].maxPeixes + " " + matriz_sol[pos_b][pos_p].dist + " " + matriz_sol[pos_b][pos_p].rating);
 
 		return matriz_sol[pos_b][pos_p];
 	}
