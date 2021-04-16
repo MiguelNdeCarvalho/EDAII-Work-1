@@ -2,12 +2,12 @@ public class Solution
 {
 	int maxPeixes;
 	int dist;
-	int rt;
+	int rating;
 
-	public void setSolution(int maxPeixes, int dist, int rt)
+	public void setSolution(int maxPeixes, int dist, int rating)
 	{
 		this.maxPeixes = maxPeixes;
 		this.dist = dist;
-		this.rt = rt;
+		this.rating = rating;
 	}
 }
