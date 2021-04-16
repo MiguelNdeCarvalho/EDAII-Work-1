@@ -10,4 +10,18 @@ public class Solution
 		this.dist = dist;
 		this.rating = rating;
 	}
+
+	public void copy(Solution s)
+	{
+		this.maxPeixes = s.maxPeixes;
+		this.dist = s.dist;
+		this.rating = s.rating;
+	}
+
+	public void inc(Solution s)
+	{
+		this.maxPeixes += s.maxPeixes;
+		this.dist += s.dist;
+		this.rating += s.rating;
+	}
 }

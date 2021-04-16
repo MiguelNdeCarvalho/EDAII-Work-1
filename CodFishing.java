@@ -18,15 +18,15 @@ public class CodFishing
 
 		//transformar os dois valores do input em inteiros e guardar em variaveis
 		int nBarcos = Integer.parseInt(nB_nP[0]);
-		int atributo = Integer.parseInt(nB_nP[1]);
+		int nPeixes = Integer.parseInt(nB_nP[1]);
 
 		//verificar se os valores estao dentro dos limites
 		if (nBarcos < 1 || nBarcos > 4000) return;
-		if (atributo < 1 || atributo > 4000) return;
+		if (nPeixes < 1 || nPeixes > 4000) return;
 
 		//declarar dois arrays para guardar todas as informacoes((x,y), rating/nPeixes) sobre os barcos e os peixes
 		Item[] barcos = new Item[nBarcos];
-		Item[] peixes = new Item[atributo];
+		Item[] peixes = new Item[nPeixes];
 
 		//ler o input sobre informacoes do barco e guardando na class barco as informacoes no sitio certo, verificando se esta tudo dentro dos limites
 		for (int i = 0; i < nBarcos; i++)
@@ -50,7 +50,7 @@ public class CodFishing
 		Arrays.sort(barcos, (a,b) -> {return a.atributo < b.atributo ? -1 : a.atributo > b.atributo ? 1 : 0;});
 
 		//ler o input sobre informacoes dos peixes e guardando na class peixes as informacoes no sitio certo, verificando se esta tudo dentro dos limites		
-		for (int i = 0; i < atributo; i++)
+		for (int i = 0; i < nPeixes; i++)
 		{
 			Item peixe = new Item();
 
@@ -71,8 +71,8 @@ public class CodFishing
 		Arrays.sort(peixes, (a,b) -> {return a.atributo < b.atributo ? -1 : a.atributo > b.atributo ? 1 : 0;});
 
 		//objeto que guarda as informacoes sobre o total de peixes, o total das distancias e o total do rating, respetivamente
-		Solution solve = new Solution();
-		solve.setSolution(0, 0/*Integer.MAX_VALUE*/, 0);
+		/*Solution solve = new Solution();
+		solve.setSolution(0, Integer.MAX_VALUE, 0);*/
 
 		/*if (barcos.length < peixes.length) {solve = new Item[peixes.length];}
 		else {solve = new Item[barcos.length];}*/
@@ -82,16 +82,32 @@ public class CodFishing
 
 		//caso o comprimento dos arrays do barco e do peixe forem iguais entao
 		//calcula o numero max de peixes, a distancia percorrida e o rating dos barcos
-		/*temp = pesquisa(solve, temp, barcos, peixes, barcos.length - 1, peixes.length - 1);
+		for (int i = 1; i <= barcos.length; i++)
+		{
+			Solution s = new Solution();
+			s.copy(pesquisa(barcos, peixes, barcos.length - i, peixes.length - 1));
+
+			//System.out.println("terminou a pesquisa da main do barco " + (barcos.length-i) + " com o S: " + s.maxPeixes + " " + s.dist + " " + s.rating);
+
+			//System.out.println("antes do if temp: " + temp.maxPeixes + " " + temp.dist + " " + temp.rating);
+
+			//if (temp.maxPeixes > s.maxPeixes || (temp.maxPeixes <= s.maxPeixes && temp.dist < s.dist) || (temp.maxPeixes <= s.maxPeixes && temp.dist >= s.dist && temp.rating < s.rating) || i == 1)
+			if (temp.maxPeixes <= s.maxPeixes && temp.dist >= s.dist && temp.rating >= s.rating || i == 1)
+			{
+				temp.copy(s);
+				//System.out.println("temp: " + temp.maxPeixes + " " + temp.dist + " " + temp.rating);
+			}
+		}
+		
 
 		//mostra o resultado
-		System.out.println(temp.maxPeixes + " " + temp.dist + " " + temp.rating);*/
+		System.out.println(temp.maxPeixes + " " + temp.dist + " " + temp.rating);
 
 		
-		pesquisa_experimento(solve, barcos, peixes, barcos.length - 1, peixes.length - 1);
+		/*pesquisa_experimento(solve, barcos, peixes, barcos.length - 1, peixes.length - 1);
 
 		//mostra o resultado
-		System.out.println(solve.maxPeixes + " " + solve.dist + " " + solve.rating);
+		System.out.println(solve.maxPeixes + " " + solve.dist + " " + solve.rating);*/
 
 		
 		/*pesquisaDinamica(solve, barcos, peixes, pos_b, pos_p);
@@ -100,49 +116,53 @@ public class CodFishing
 		System.out.println(solve.maxPeixes + " " + solve.dist + " " + solve.rating);*/
 	}
 
-	public static Solution pesquisa(Solution solve, Solution temp, Item[] barcos, Item[] peixes, int pos_b, int pos_p)
+	public static Solution pesquisa(Item[] barcos, Item[] peixes, int pos_b, int pos_p)
 	{
-		if (pos_p < 0 || pos_b < 0)
-			{
-				System.out.println("entrou");
-				Solution temporario = new Solution();
-				temporario.setSolution(0, 0, 0);
-				return temporario;
-			}
+		Solution temp = new Solution();
+		temp.setSolution(0, 0, 0);
 
-		if (barcos.length >= peixes.length)
-		{
-			for (int  i = pos_b; i >= 0; i--)
-			{
-				temp.maxPeixes = peixes[pos_p].atributo;
-				temp.dist = Math.abs(barcos[i].x - peixes[pos_p].x) + Math.abs(barcos[i].y - peixes[pos_p].y);
-				temp.rating = barcos[i].atributo;
+		if (pos_b < 0 || pos_p < 0) {/*System.out.println("saiu porque " + pos_b + "<0 ou porque " + pos_p + "<0");*/ return temp;}
 
-				//solve[pos_p] = barcos[i];
+		Solution s1 = new Solution();
+		//System.out.println("1ª pesquisa: entrou com o barco " + pos_b + " e vai para o barco " + (pos_b - 1));
+		s1.copy(pesquisa(barcos, peixes, pos_b - 1, pos_p - 1));
+		//System.out.println("terminou a 1ª pesquisa do barco " + pos_b + " com o S1: " + s1.maxPeixes + " " + s1.dist + " " + s1.rating);
 
-				Solution aux ;
-				aux = pesquisa(solve, temp, barcos, peixes, i - 1, pos_p - 1);
+		//calcular o numero max de peixes
+		s1.maxPeixes += peixes[pos_p].atributo;
+		//calcula a distancia percorrida
+		s1.dist += Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y);
+		//calcula o atributo dos barcos
+		s1.rating += barcos[pos_b].atributo;
+		//passa para o proximo peixes
 
-				temp.maxPeixes += aux.maxPeixes;
-				temp.dist += aux.dist;
-				temp.rating += aux.rating;
+		Solution s2 = new Solution();
+		//System.out.println("2ª pesquisa: entrou com o barco " + pos_b + " e vai para o barco " + (pos_b - 2));
+		s2.copy(pesquisa(barcos, peixes, pos_b - 2, pos_p - 1));
+		//System.out.println("terminou a 2ª pesquisa do barco " + pos_b + " com o S1: " + s2.maxPeixes + " " + s2.dist + " " + s2.rating);
 
-				System.out.println("barco: " + i + " peixe: " + pos_p + " temp.dist: " + temp.dist + " solve.dist: " + solve.dist);
+		//calcular o numero max de peixes
+		s2.maxPeixes += peixes[pos_p].atributo;
+		//calcula a distancia percorrida
+		s2.dist += Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y);
+		//calcula o atributo dos barcos
+		s2.rating += barcos[pos_b].atributo;
+		//passa para o proximo peixes
 
-				if(solve.dist > temp.dist)
-				{
-					System.out.println("entrou na comparacao");
-					solve.maxPeixes = temp.maxPeixes;
-					solve.dist = temp.dist;
-					solve.rating = temp.rating;
-				}
 
-				
+		//System.out.println("\nantes\nS1: " + s1.maxPeixes + " " + s1.dist + " " + s1.rating);
+		//System.out.println("S2: " + s2.maxPeixes + " " + s2.dist + " " + s2.rating);
+		if(s1.maxPeixes > s2.maxPeixes || s1.dist < s2.dist || s1.rating < s2.rating)
+			temp.copy(s1);
 
-			}
-		}
+		else
+			temp.copy(s2);
+
+		//System.out.println("depois\ntemp: " + temp.maxPeixes + " " + temp.dist + " " + temp.rating);
 
 		return temp;
+
+
 	}
 
 

@@ -1,0 +1,41 @@
+1ª pesquisa: entrou com o barco 1 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+saiu porque -1<0 ou porque 0<0
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+saiu porque -2<0 ou porque 0<0
+terminou a 2ª pesquisa do barco 0 com o S1: 0 0 0
+
+antes
+S1: 20 2 10
+S2: 20 2 10
+depois
+temp: 20 2 10
+terminou a 1ª pesquisa do barco 1 com o S1: 20 2 10
+2ª pesquisa: entrou com o barco 1 e vai para o barco -1
+saiu porque -1<0 ou porque 1<0
+terminou a 2ª pesquisa do barco 1 com o S1: 0 0 0
+
+antes
+S1: 50 7 30
+S2: 30 5 20
+depois
+temp: 50 7 30
+terminou a pesquisa da main do barco 1 com o S: 50 7 30
+antes do if temp: 0 0 0
+temp: 50 7 30
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+saiu porque -1<0 ou porque 1<0
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+saiu porque -2<0 ou porque 1<0
+terminou a 2ª pesquisa do barco 0 com o S1: 0 0 0
+
+antes
+S1: 30 4 10
+S2: 30 4 10
+depois
+temp: 30 4 10
+terminou a pesquisa da main do barco 0 com o S: 30 4 10
+antes do if temp: 50 7 30
+50 7 30

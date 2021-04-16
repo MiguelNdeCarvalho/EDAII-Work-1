@@ -1,0 +1,77 @@
+1ª pesquisa: entrou com o barco 2 e vai para o barco 1
+1ª pesquisa: entrou com o barco 1 e vai para o barco 0
+saiu porque 0<0 ou porque -1<0
+terminou a 1ª pesquisa do barco 1 com o S1: 0 0 0
+2ª pesquisa: entrou com o barco 1 e vai para o barco -1
+saiu porque -1<0 ou porque -1<0
+terminou a 2ª pesquisa do barco 1 com o S1: 0 0 0
+
+antes
+S1: 20 20 60
+S2: 20 20 60
+depois
+temp: 20 20 60
+terminou a 1ª pesquisa do barco 2 com o S1: 20 20 60
+2ª pesquisa: entrou com o barco 2 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+saiu porque -1<0 ou porque -1<0
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+saiu porque -2<0 ou porque -1<0
+terminou a 2ª pesquisa do barco 0 com o S1: 0 0 0
+
+antes
+S1: 20 20 10
+S2: 20 20 10
+depois
+temp: 20 20 10
+terminou a 2ª pesquisa do barco 2 com o S1: 20 20 10
+
+antes
+S1: 50 40 180
+S2: 50 40 130
+depois
+temp: 50 40 130
+terminou a pesquisa da main do barco 2 com o S: 50 40 130
+antes do if temp: 0 0 0
+temp: 50 40 130
+1ª pesquisa: entrou com o barco 1 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+saiu porque -1<0 ou porque -1<0
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+saiu porque -2<0 ou porque -1<0
+terminou a 2ª pesquisa do barco 0 com o S1: 0 0 0
+
+antes
+S1: 20 20 10
+S2: 20 20 10
+depois
+temp: 20 20 10
+terminou a 1ª pesquisa do barco 1 com o S1: 20 20 10
+2ª pesquisa: entrou com o barco 1 e vai para o barco -1
+saiu porque -1<0 ou porque 0<0
+terminou a 2ª pesquisa do barco 1 com o S1: 0 0 0
+
+antes
+S1: 50 30 70
+S2: 30 10 60
+depois
+temp: 50 30 70
+terminou a pesquisa da main do barco 1 com o S: 50 30 70
+antes do if temp: 50 40 130
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+saiu porque -1<0 ou porque 0<0
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+saiu porque -2<0 ou porque 0<0
+terminou a 2ª pesquisa do barco 0 com o S1: 0 0 0
+
+antes
+S1: 30 10 10
+S2: 30 10 10
+depois
+temp: 30 10 10
+terminou a pesquisa da main do barco 0 com o S: 30 10 10
+antes do if temp: 50 40 130
+50 40 130
