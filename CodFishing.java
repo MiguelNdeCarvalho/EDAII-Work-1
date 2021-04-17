@@ -28,7 +28,7 @@ public class CodFishing
 		Item[] barcos = new Item[nBarcos];
 		Item[] peixes = new Item[nPeixes];
 
-		//ler o input sobre informacoes do barco e guardando na class barco as informacoes no sitio certo, verificando se esta tudo dentro dos limites
+		//ler o input sobre informacoes do barco e guardando na instancian de class barco as informacoes no sitio certo, verificando se esta tudo dentro dos limites
 		for (int i = 0; i < nBarcos; i++)
 		{
 			Item barco = new Item();
@@ -49,7 +49,7 @@ public class CodFishing
 		//ordenar o array de barcos do menor para o maior
 		Arrays.sort(barcos, (a,b) -> {return a.atributo < b.atributo ? -1 : a.atributo > b.atributo ? 1 : 0;});
 
-		//ler o input sobre informacoes dos peixes e guardando na class peixes as informacoes no sitio certo, verificando se esta tudo dentro dos limites		
+		//ler o input sobre informacoes dos peixes e guardando na instancia de class peixes as informacoes no sitio certo, verificando se esta tudo dentro dos limites		
 		for (int i = 0; i < nPeixes; i++)
 		{
 			Item peixe = new Item();
@@ -70,69 +70,73 @@ public class CodFishing
 		//ordenar o array de peixes do menor para o maior
 		Arrays.sort(peixes, (a,b) -> {return a.atributo < b.atributo ? -1 : a.atributo > b.atributo ? 1 : 0;});
 
-		//objeto que guarda as informacoes sobre o total de peixes, o total das distancias e o total do rating, respetivamente
-		/*Solution solve = new Solution();
-		solve.setSolution(0, Integer.MAX_VALUE, 0);*/
-
-		/*if (barcos.length < peixes.length) {solve = new Item[peixes.length];}
-		else {solve = new Item[barcos.length];}*/
-
+		//intancia da classe Solution que guarda o melhor caso
 		Solution temp = new Solution();
 		temp.setSolution(0, 0, 0);
 
+		//matriz que guarda todas as 
 		Solution[][] matriz_sol = new Solution[barcos.length][peixes.length];
 
-		//caso o comprimento dos arrays do barco e do peixe forem iguais entao
-		//calcula o numero max de peixes, a distancia percorrida e o rating dos barcos
-		for (int i = 1; i <= barcos.length; i++)
+		//associa um barco a cada ciclo ao local com mais peixes
+		for (int i = barcos.length - 1; i >= 0; i--)
 		{
+			//instacia de classe para casa associacao
 			Solution s = new Solution();
-			if(matriz_sol[barcos.length - i][peixes.length - 1] == null)
-				s.copy(pesquisa(matriz_sol, barcos, peixes, barcos.length - i, peixes.length - 1));
+
+			//verifica se o a associacao ja se encontra calcula (isto e, com o melhor caso)
+			//caso nao estaja entra no if, caso esteja entra no else para copiar os valores do melhor caso
+			if(matriz_sol[i][peixes.length - 1] == null)
+				s.copy(pesquisa(matriz_sol, barcos, peixes, i, peixes.length - 1));
 
 			else
-				s.copy(matriz_sol[barcos.length - i][peixes.length - 1]);
-
+				s.copy(matriz_sol[i][peixes.length - 1]);
 
 			//System.out.println("terminou a pesquisa da main do barco " + (barcos.length-i) + " com o S: " + s.maxPeixes + " " + s.dist + " " + s.rating);
 
 			//System.out.println("antes do if temp: " + temp.maxPeixes + " " + temp.dist + " " + temp.rating);
 
-			if (temp.maxPeixes <= s.maxPeixes && temp.dist >= s.dist && temp.rating >= s.rating || i == 1)
+			//verifica os 3 caso pertendidos, ter o maximo de peixes, ter o minimo de distancia e ter um rating menor, a ultima verificacao e apenas para entrar na primeira vez
+			if (temp.maxPeixes <= s.maxPeixes && temp.dist >= s.dist && temp.rating >= s.rating || i == (barcos.length - 1))
 			{
 				temp.copy(s);
-				//System.out.println("temp: " + temp.maxPeixes + " " + temp.dist + " " + temp.rating);
+				//System.out.println("temp atualizado: " + temp.maxPeixes + " " + temp.dist + " " + temp.rating);
 			}
 		}
 		
-
-		//mostra o resultado
+		//mostra o melhor caso
 		System.out.println(temp.maxPeixes + " " + temp.dist + " " + temp.rating);
 	}
 
 	public static Solution pesquisa(Solution[][] matriz_sol, Item[] barcos, Item[] peixes, int pos_b, int pos_p)
 	{
-		Solution temp = new Solution();
-		temp.setSolution(0, 0, 0);
+		//caso base, quando nao tem mais barcos para serem atribuidos ou nao tem mais sitio de peixes para atribuir
+		if (pos_b < 0 || pos_p < 0) 
+		{
+			//cria uma instancia da classe Solution para que o pai possa altera-lo (maxPeixes, dist, rating)
+			Solution temp = new Solution();
+			temp.setSolution(0, 0, 0);
 
-		if (pos_b < 0 || pos_p < 0) {/*System.out.println("saiu porque " + pos_b + "<0 ou porque " + pos_p + "<0");*/ return temp;}
+			return temp;
+		}
 
-		Solution s1 = new Solution();
-		//System.out.println("1ª pesquisa: entrou com o barco " + pos_b + " e vai para o barco " + (pos_b - 1));
+		//verifica se o a associacao ja se encontra calcula (isto e, com o melhor caso)
+		//caso nao estaja entra no if, caso esteja entra no else para copiar os valores do melhor caso
 		if (matriz_sol[pos_b][pos_p] == null)
 		{
+			//criar uma instancia para saber qual o melhor caso do lado esquerdo da arvore
+			Solution s1 = new Solution();
+			//System.out.println("1ª pesquisa: entrou com o barco " + pos_b + " e vai para o barco " + (pos_b - 1));
 			s1.copy(pesquisa(matriz_sol, barcos, peixes, pos_b - 1, pos_p - 1));
-		
 			//System.out.println("terminou a 1ª pesquisa do barco " + pos_b + " com o S1: " + s1.maxPeixes + " " + s1.dist + " " + s1.rating);
 
 			//calcular o numero max de peixes
 			s1.maxPeixes += peixes[pos_p].atributo;
-			//calcula a distancia percorrida
+			//calcula a distancia percorrida usando a distancia de manhattan
 			s1.dist += Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y);
 			//calcula o atributo dos barcos
 			s1.rating += barcos[pos_b].atributo;
-			//passa para o proximo peixes
 
+			//criar uma instancia para saber qual o melhor caso do lado direito da arvore
 			Solution s2 = new Solution();
 			//System.out.println("2ª pesquisa: entrou com o barco " + pos_b + " e vai para o barco " + (pos_b - 2));
 			s2.copy(pesquisa(matriz_sol, barcos, peixes, pos_b - 2, pos_p - 1));
@@ -144,22 +148,25 @@ public class CodFishing
 			s2.dist += Math.abs(barcos[pos_b].x - peixes[pos_p].x) + Math.abs(barcos[pos_b].y - peixes[pos_p].y);
 			//calcula o atributo dos barcos
 			s2.rating += barcos[pos_b].atributo;
-			//passa para o proximo peixes
-
 
 			//System.out.println("\nantes\nS1: " + s1.maxPeixes + " " + s1.dist + " " + s1.rating);
 			//System.out.println("S2: " + s2.maxPeixes + " " + s2.dist + " " + s2.rating);
+
+			//verifica se o lado esquerdo tem mais peixes que o lado direito, ou
+			// se o lado esquerdo tem uma distancia menor que o lado direito, ou
+			// se o lado esquerdo tem um rating menor que o lado direito
+			//tem de ser por esta ordem pois o maxPeixes pervalece sobre a dist e o dist pervalece sobre o rating
+			//caso cumpra uma comparacao entra no if, caso contrario entra no else
 			if(s1.maxPeixes > s2.maxPeixes || s1.dist < s2.dist || s1.rating < s2.rating)
 				matriz_sol[pos_b][pos_p] = s1;
 
 			else
 				matriz_sol[pos_b][pos_p] = s2;
-
-			//System.out.println("depois\ntemp: " + temp.maxPeixes + " " + temp.dist + " " + temp.rating);
 		}
 
 		//System.out.println("arr_sol[" + pos_b + "][" + pos_p + "]: " + matriz_sol[pos_b][pos_p].maxPeixes + " " + matriz_sol[pos_b][pos_p].dist + " " + matriz_sol[pos_b][pos_p].rating);
 
+		//devolve o melhor caso para este subproblema
 		return matriz_sol[pos_b][pos_p];
 	}
 }
