@@ -1,0 +1,263 @@
+1ª pesquisa: entrou com o barco 2 e vai para o barco 1
+1ª pesquisa: entrou com o barco 1 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+apos incremento do barco 0 o S1: 5 120 10
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+terminou a 2ª pesquisa do barco 0 com o S2: 0 0 0
+apos incremento do barco 0 o S2: 5 120 10
+
+antes
+S1: 5 120 10
+S2: 5 120 10
+terminou a 1ª pesquisa do barco 1 com o S1: 5 120 10
+apos incremento do barco 1 o S1: 20 200 20
+2ª pesquisa: entrou com o barco 1 e vai para o barco -1
+terminou a 2ª pesquisa do barco 1 com o S2: 0 0 0
+apos incremento do barco 1 o S2: 15 80 10
+
+antes
+S1: 20 200 20
+S2: 15 80 10
+terminou a 1ª pesquisa do barco 2 com o S1: 20 200 20
+apos incremento do barco 2 o S1: 45 460 30
+2ª pesquisa: entrou com o barco 2 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+apos incremento do barco 0 o S1: 15 150 10
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+terminou a 2ª pesquisa do barco 0 com o S2: 0 0 0
+apos incremento do barco 0 o S2: 15 150 10
+
+antes
+S1: 15 150 10
+S2: 15 150 10
+terminou a 2ª pesquisa do barco 2 com o S2: 15 150 10
+apos incremento do barco 2 o S2: 40 410 20
+
+antes
+S1: 45 460 30
+S2: 40 410 20
+dentro da pesquisa
+50
+120
+200
+dentro do pesquisa barco 1 com rating 10
+dentro do pesquisa barco 0 com rating 10
+1ª pesquisa: entrou com o barco 2 e vai para o barco 1
+1ª pesquisa: entrou com o barco 1 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+apos incremento do barco 0 o S1: 5 150 10
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+terminou a 2ª pesquisa do barco 0 com o S2: 0 0 0
+apos incremento do barco 0 o S2: 5 150 10
+
+antes
+S1: 5 150 10
+S2: 5 150 10
+terminou a 1ª pesquisa do barco 1 com o S1: 5 150 10
+apos incremento do barco 1 o S1: 20 300 20
+2ª pesquisa: entrou com o barco 1 e vai para o barco -1
+terminou a 2ª pesquisa do barco 1 com o S2: 0 0 0
+apos incremento do barco 1 o S2: 15 150 10
+
+antes
+S1: 20 300 20
+S2: 15 150 10
+terminou a 1ª pesquisa do barco 2 com o S1: 20 300 20
+apos incremento do barco 2 o S1: 45 560 30
+2ª pesquisa: entrou com o barco 2 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+apos incremento do barco 0 o S1: 15 80 10
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+terminou a 2ª pesquisa do barco 0 com o S2: 0 0 0
+apos incremento do barco 0 o S2: 15 80 10
+
+antes
+S1: 15 80 10
+S2: 15 80 10
+terminou a 2ª pesquisa do barco 2 com o S2: 15 150 10
+apos incremento do barco 2 o S2: 40 410 20
+
+antes
+S3: 45 560 30
+S4: 40 410 20
+ARRAY
+50
+120
+200
+fora do pesquisa barco 2 com rating 10
+fora do pesquisa barco 1 com rating 10
+mostrar troca antes
+50
+200
+120
+1ª pesquisa: entrou com o barco 2 e vai para o barco 1
+1ª pesquisa: entrou com o barco 1 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+apos incremento do barco 0 o S1: 5 120 10
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+terminou a 2ª pesquisa do barco 0 com o S2: 0 0 0
+apos incremento do barco 0 o S2: 5 120 10
+
+antes
+S1: 5 120 10
+S2: 5 120 10
+terminou a 1ª pesquisa do barco 1 com o S1: 5 150 10
+apos incremento do barco 1 o S1: 20 320 20
+2ª pesquisa: entrou com o barco 1 e vai para o barco -1
+terminou a 2ª pesquisa do barco 1 com o S2: 0 0 0
+apos incremento do barco 1 o S2: 15 170 10
+
+antes
+S1: 20 320 20
+S2: 15 170 10
+terminou a 1ª pesquisa do barco 2 com o S1: 20 320 20
+apos incremento do barco 2 o S1: 45 430 30
+2ª pesquisa: entrou com o barco 2 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+apos incremento do barco 0 o S1: 15 150 10
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+terminou a 2ª pesquisa do barco 0 com o S2: 0 0 0
+apos incremento do barco 0 o S2: 15 150 10
+
+antes
+S1: 15 150 10
+S2: 15 150 10
+terminou a 2ª pesquisa do barco 2 com o S2: 15 150 10
+apos incremento do barco 2 o S2: 40 260 20
+
+antes
+S1: 45 430 30
+S2: 40 260 20
+dentro da pesquisa
+50
+200
+120
+dentro do pesquisa barco 1 com rating 10
+dentro do pesquisa barco 0 com rating 10
+1ª pesquisa: entrou com o barco 2 e vai para o barco 1
+1ª pesquisa: entrou com o barco 1 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+apos incremento do barco 0 o S1: 5 240 10
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+terminou a 2ª pesquisa do barco 0 com o S2: 0 0 0
+apos incremento do barco 0 o S2: 5 240 10
+
+antes
+S1: 5 240 10
+S2: 5 240 10
+terminou a 1ª pesquisa do barco 1 com o S1: 5 240 10
+apos incremento do barco 1 o S1: 20 390 20
+2ª pesquisa: entrou com o barco 1 e vai para o barco -1
+terminou a 2ª pesquisa do barco 1 com o S2: 0 0 0
+apos incremento do barco 1 o S2: 15 150 10
+
+antes
+S1: 20 390 20
+S2: 15 150 10
+terminou a 1ª pesquisa do barco 2 com o S1: 20 390 20
+apos incremento do barco 2 o S1: 45 500 30
+2ª pesquisa: entrou com o barco 2 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+apos incremento do barco 0 o S1: 15 170 10
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+terminou a 2ª pesquisa do barco 0 com o S2: 0 0 0
+apos incremento do barco 0 o S2: 15 170 10
+
+antes
+S1: 15 170 10
+S2: 15 170 10
+terminou a 2ª pesquisa do barco 2 com o S2: 15 170 10
+apos incremento do barco 2 o S2: 40 280 20
+
+antes
+S3: 45 500 30
+S4: 40 280 20
+mostrar troca depois
+50
+120
+200
+terminou a pesquisa da main do barco 2 com o S: 40 280 20
+antes do if temp: 0 0 0
+temp atualizado: 40 280 20
+1ª pesquisa: entrou com o barco 1 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+apos incremento do barco 0 o S1: 15 150 10
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+terminou a 2ª pesquisa do barco 0 com o S2: 0 0 0
+apos incremento do barco 0 o S2: 15 150 10
+
+antes
+S1: 15 150 10
+S2: 15 150 10
+terminou a 1ª pesquisa do barco 1 com o S1: 15 170 10
+apos incremento do barco 1 o S1: 40 280 20
+2ª pesquisa: entrou com o barco 1 e vai para o barco -1
+terminou a 2ª pesquisa do barco 1 com o S2: 0 0 0
+apos incremento do barco 1 o S2: 25 110 10
+
+antes
+S1: 40 280 20
+S2: 25 110 10
+ARRAY
+50
+120
+200
+fora do pesquisa barco 1 com rating 10
+fora do pesquisa barco 0 com rating 10
+mostrar troca antes
+120
+50
+200
+1ª pesquisa: entrou com o barco 1 e vai para o barco 0
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+apos incremento do barco 0 o S1: 15 80 10
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+terminou a 2ª pesquisa do barco 0 com o S2: 0 0 0
+apos incremento do barco 0 o S2: 15 80 10
+
+antes
+S1: 15 80 10
+S2: 15 80 10
+terminou a 1ª pesquisa do barco 1 com o S1: 15 170 10
+apos incremento do barco 1 o S1: 40 230 20
+2ª pesquisa: entrou com o barco 1 e vai para o barco -1
+terminou a 2ª pesquisa do barco 1 com o S2: 0 0 0
+apos incremento do barco 1 o S2: 25 60 10
+
+antes
+S1: 40 230 20
+S2: 25 60 10
+mostrar troca depois
+50
+120
+200
+terminou a pesquisa da main do barco 1 com o S: 40 280 20
+antes do if temp: 40 280 20
+temp atualizado: 40 280 20
+1ª pesquisa: entrou com o barco 0 e vai para o barco -1
+terminou a 1ª pesquisa do barco 0 com o S1: 0 0 0
+apos incremento do barco 0 o S1: 25 60 10
+2ª pesquisa: entrou com o barco 0 e vai para o barco -2
+terminou a 2ª pesquisa do barco 0 com o S2: 0 0 0
+apos incremento do barco 0 o S2: 25 60 10
+
+antes
+S1: 25 60 10
+S2: 25 60 10
+ARRAY
+50
+120
+200
+terminou a pesquisa da main do barco 0 com o S: 25 60 10
+antes do if temp: 40 280 20
+40 280 20

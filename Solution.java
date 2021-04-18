@@ -18,10 +18,10 @@ public class Solution
 		this.rating = s.rating;
 	}
 
-	public void inc(Solution s)
+	public void inc(Item b, Item p)
 	{
-		this.maxPeixes += s.maxPeixes;
-		this.dist += s.dist;
-		this.rating += s.rating;
+		this.maxPeixes += p.atributo;
+		this.dist += Math.abs(b.x - p.x) + Math.abs(b.y - p.y);
+		this.rating += b.atributo;
 	}
 }
