@@ -24,4 +24,11 @@ public class Solution
 		this.dist += Math.abs(b.x - p.x) + Math.abs(b.y - p.y);
 		this.rating += b.atributo;
 	}
+
+	public void inc(Solution s)
+	{
+		this.maxPeixes += s.maxPeixes;
+		this.dist += s.maxPeixes;
+		this.rating += s.maxPeixes;
+	}
 }
