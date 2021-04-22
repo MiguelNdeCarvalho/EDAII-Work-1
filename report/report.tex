@@ -1,0 +1,115 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper, total={16cm, 24cm}]{geometry}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{tikz}
+    \usetikzlibrary{shadows}
+\usepackage{booktabs}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{listings}
+    \renewcommand\lstlistingname{Listagem}
+    \lstset{numbers=left, numberstyle=\tiny, numbersep=5pt, basicstyle=\footnotesize\ttfamily, frame=tb,rulesepcolor=\color{gray}, breaklines=true}
+\usepackage{blindtext}
+
+% -------------------------------------------------------------------------------------------
+\title
+{
+    \includegraphics[width=0.4\textwidth]{imgs/university.png}
+    \\[0.1cm]
+    \textbf{1º Trabalho - Cod Fishing} \\
+    Estrutura de Dados e Algoritmos II
+}
+
+\author
+{
+    \textbf{Professor:} Vasco Pedro \\
+    \textbf{Grupo:} G107 \\
+    \textbf{Realizado por:} Filipe Alfaiate (43315), Miguel de Carvalho (43108)
+}
+\date{\today}
+
+% -------------------------------------------------------------------------------------------
+%                                Body                                                       %
+% -------------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+% -------------------------------------------------------------------------------------------
+\section{Algoritmo}
+
+\hspace{0,5cm} O nosso algoritmo consiste na utilização de uma \textbf{matriz} para conseguirmos processar
+os dados do problema. A \verb|matriz| é construída com o objetivo de guardar todas as melhores atribuições de
+todos os \textbf{locais de pesca} com todos os \textbf{barcos}, obtendo na última posição da \verb|matriz|
+o melhor caso que solucione o problema.
+
+
+% -------------------------------------------------------------------------------------------
+\section{Complexidade}
+
+\subsection{Temporal}
+
+\hspace{0,5cm}Começámos por proceder à leitura de uma \verb|string| com dois números e ambos os números foram
+associados a variavéis diferentes, \verb|nBarcos| e \verb|nPeixes|. Este acesso é direto pois na
+primeiro posição da string é o \textbf{número de barcos} e na segunda posiçõ é o \textbf{número de 
+peixes}, o que origina \verb|O(1)|.
+
+Em seguida, procedeu-se à leitura e organização dos dados dos \textbf{barcos} consoante o \verb|nBarcos|.
+Por isso estamos perante uma complexidade \verb|O(n)|, onde \verb|n| é o \textbf{número de barcos}.
+
+Seguidamente ordernámos o \verb|array| de \textbf{barcos}, este tem um complexidade \verb|O(n)|
+em que \verb|n| é a \textbf{quantidade de elementos do array barcos}.
+
+Depois procedeu-se exatamente ao mesmo processo, mas desta vez para os peixes, tendo uma complexidade
+\verb|O(m)| onde \verb|m| é a \textbf{quantidade de locais de peixe}/\textbf{quantidade de elementos do array peixes}.
+
+Além disso, criámos uma matriz que tem custo constante \verb|O(1)|.
+
+Finalmente, executámos o nosso \textbf{algoritmo}. Durante a execução estamos perante dois \textbf{ciclos},
+um interior e outro exterior. No ciclo interior existe \textbf{duas condições} de custo constante \verb|O(1)|,
+mas o ciclo tem um custo linear de \verb|O(n)| onde \verb|n| é a \textbf{quantidade de barcos}.
+No ciclo exterior é apenas realizado o ciclo interior, o que para cada iteração temos uma complexidade
+\verb|O(m)|, então o ciclo vai ter um complexidade O(m x n)=O($n^{2}$) onde \verb|n| é o \textbf{número de
+peixes}.
+
+Logo, a \textbf{complexidade do programa} será de
+
+\begin{center}
+    \textbf{O(1) + O(n) + O(n) + O(m) + O(m) + ((O(1) x O(1)) x O(n)) x O(m) = O($n^{2}$)}
+\end{center}
+
+\subsection{Espacial}
+
+\hspace{0,5cm}Durante a inicialização dos \verb|arrays| para guardar os \textbf{barcos} e os \textbf{locais de pesca}
+é necessário saber quantos \textbf{barcos} e \textbf{locais de pesca} existem inicialmente, por outras
+palavras ocupam em memória um número linear, que depende do \textbf{número de barcos} e do \textbf{número de
+peixes}, originando assim uma complexidade \verb|O(n)|.
+
+Na inicialização da \verb|matriz| é fundamental existir o número de \textbf{locais de pesca} e de \textbf{barcos}
+para determinar o espaço que a \verb|matriz| deverá ocupar em \textbf{memória}. Neste caso iremos ocupar em memória
+um número exponencial, pois tem que se multiplicar o \textbf{número de locais de pesca} (m) pelo \textbf{número de barcos}
+(n), originando assim O(m x n) = O($n^{2}$).
+
+Podemos dizer então que a \textbf{complexidade espacial} do programa será de 
+\begin{center}
+    \textbf{O(n) + O($n^{2}$) = O($n^{2}$)}
+\end{center}
+
+
+% -------------------------------------------------------------------------------------------
+\section{Comentários Adicionais}
+
+\hspace{0,5cm} Apesar deste trabalho apresentar um \textbf{algoritmo} que funciona de \textbf{maneira iterative}, incialmente
+começámos por densenvolver com um \textbf{pensamento recursivo} o que originou alguns \textbf{Timeouts} (excedeu
+o tempo limite estipulado pelo professor) e diversos \textbf{Wrong Answers}. 
+
+Devido ao facto de obtermos muitas
+respostas erradas e termos-nos reunido com o Professor, recomeçámos a pensar numa abordagem diferente e seguindo
+as indicações do professor, iniciámos pelo caso do mesmo \textbf{número de barcos} com o mesmo \textbf{número
+de peixes} e como era algo simples decidimos implementar com um ciclo. Como esta abordagem nunca tinha sido
+testada por nós, decidimos alterar a \textbf{forma recursiva} para uma \textbf{forma iterativa}, solucionando
+assim o problema.
+% -------------------------------------------------------------------------------------------
+\end{document}
